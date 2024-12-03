@@ -1,0 +1,14 @@
+version: '3.9'
+services:
+    app:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        volumes:
+            - .env:/app/.env
+        command: npm start
+        logging:
+            driver: "json-file"
+            options:
+                max-size: "1m"
+
