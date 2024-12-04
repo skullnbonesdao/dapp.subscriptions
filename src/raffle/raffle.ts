@@ -5,7 +5,7 @@
  * IDL can be found at `target/idl/raffle.json`.
  */
 export type Raffle = {
-  "address": "8E18WxkRyLauKkzNCPZHZEhxXzLrN1JAebqt7ofui1We",
+  "address": "rafxXxjw9fkAuQhCJ1A4gmX1oqgvRrSeXyRPUE9K2Yx",
   "metadata": {
     "name": "raffle",
     "version": "0.1.0",
