@@ -32,7 +32,7 @@ async function main() {
                 .setColor('#fce100')
                 .setThumbnail(assets.find((asset) => asset.mint == event.prizeMint.toString())?.image)
                 .setDescription(`${event.name} - ${event.description}`)
-                .addField('SOLD', `${parseInt(event.sold.toString()) + parseInt(event.amount.toString())}`, true)
+                .addField('SOLD', `${event.sold.toString()}`, true)
                 .addField('TOTAL', `${event.total.toString()}`, true)
 
             hook.send(embed)
