@@ -11,7 +11,7 @@ async function main() {
     console.info(`> Started APP`);
 
     try {
-        const connection = new Connection(process.env.RPC);
+        const connection = new Connection(process.env.RPC, {wsEndpoint: process.env.RPCWS});
 
         const wallet = new anchor.Wallet(Keypair.generate() as any);
         const provider = new anchor.AnchorProvider(connection as any, wallet)
