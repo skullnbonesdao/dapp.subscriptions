@@ -8,13 +8,12 @@ WORKDIR /app
 COPY package*.json ./
 
 
-# Install dependencies (only production)
-RUN yarn install
-
-
 COPY tsconfig.json ./
 COPY src ./src
 
+# Install dependencies (only production)
+RUN yarn install
+RUN npm rebuild
 
 # Specify the command to run your app
 CMD ["npm", "run start"]
