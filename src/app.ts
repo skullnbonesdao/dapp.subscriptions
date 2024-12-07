@@ -28,7 +28,7 @@ async function main() {
             console.log(`Event received @slot=${slot} \nsignaure=${signature}\ndata=${JSON.stringify(event, null, 3)}`)
 
             const embed = new MessageBuilder()
-                .setTitle(`🎟️ ${event.amount.toString()} Ticket(s) sold 🎟️`)
+                .setTitle(`🎟️ ${event.amount.toString()} Ticket${parseInt(event.amount.toString()) > 1 ? "'s" : ''} sold 🎟️`)
                 .setURL('https://dapp.skullnbones.xyz/#/raffle')
                 .setColor('#fce100')
                 .setThumbnail(assets.find((asset) => asset.mint == event.prizeMint.toString())?.image)
