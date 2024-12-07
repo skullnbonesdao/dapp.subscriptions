@@ -5,6 +5,7 @@ import * as raffleIDL from "./raffle/raffle.json"
 import {Raffle} from "./raffle/raffle"
 import {MessageBuilder, Webhook} from "discord-webhook-node";
 import assets from './assets/assets.json'
+import {formatAddress} from "./formatAddress";
 
 
 async function main() {
@@ -22,7 +23,7 @@ async function main() {
         hook.setAvatar(process.env.AVATAR)
         hook.send("=== Initalized ===")
 
-        //Event Listener
+        //Event buyListener
         const buyListener = raffle.addEventListener("eventBuyTicket", (event, slot, signature) => {
             console.log(`Event received @slot=${slot} \nsignaure=${signature}\ndata=${JSON.stringify(event, null, 3)}`)
 
@@ -38,6 +39,8 @@ async function main() {
             hook.send(embed)
         });
 
+
+        //Event enableListener
         const enableListener = raffle.addEventListener("eventEnable", (event, slot, signature) => {
             console.log(`Event received @slot=${slot} \nsignaure=${signature}\ndata=${JSON.stringify(event, null, 3)}`)
             const embed = new MessageBuilder()
@@ -50,6 +53,8 @@ async function main() {
             hook.send(embed)
         });
 
+
+        //Event winnerListener
         const winnerListener = raffle.addEventListener("eventWinner", (event, slot, signature) => {
             console.log(`Event received @slot=${slot} \nsignaure=${signature}\ndata=${JSON.stringify(event, null, 3)}`)
             const embed = new MessageBuilder()
@@ -58,7 +63,7 @@ async function main() {
                 .setColor('#fce100')
                 .setThumbnail(assets.find((asset) => asset.mint == event.prizeMint.toString())?.image)
                 .setDescription(`${event.name} - ${event.description}`)
-                .addField('Winner', `${event.winner.toString()}`, false)
+                .addField('Winner', `${formatAddress(event.winner.toString())}`, false)
             hook.send(embed)
         });
 
